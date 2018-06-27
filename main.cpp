@@ -34,9 +34,37 @@ void Add(SeqList* L);
 void menu(SeqList* L);
 void Show(SeqList *L);
 void JM();
-void save(SeqList* L);
+void find(SeqList* L);
 void sort(SeqList* L);
 void read(SeqList* L);
+
+
+
+void read(SeqList *L)
+{
+    int i = 0, Score[5], Sum;
+    double ID;
+    char Name[30];
+    FILE* fp;
+    fp = fopen("student.txt", "r");
+    if(fp == NULL)
+        printf("该文件为空\n");
+    else
+    {
+        while(fscanf(fp,"%lf %s %d %d %d %d",&Id, Name, &Score[0], &Score[1], &Score[2], &people==Final_score)!=EOF)
+        {
+            L->elem[i].num = Id;
+            strcpy(L->elem[i].name, Name);
+            L->elem[i].score[0] = Score[0];
+            L->elem[i].score[1] = Score[1];
+            L->elem[i].score[2] = Score[2];
+            L->elem[i].final_score = final_score;
+            i++;
+            L->last++;
+        }
+        fclose(fp);
+    }
+}
 
 
 void JM()
