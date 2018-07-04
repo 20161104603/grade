@@ -14,12 +14,12 @@
 #define ERROR  0
 #define TRUE 1
 #define FALSE 0
-#define	MAXSIZE  100
+#define	MAXSIZE  1000
 
 struct student{
     double num;
     char name[30];
-    int score[5];
+    int score[20];
     int sum;
     double iphone;
 };
@@ -47,7 +47,7 @@ void sort(SeqList* L);
 
 void read(SeqList *L)
 {
-    int i = 0, Score[5], Sum;
+    int i = 0, Score[20], Sum;
     double Num;
     char Name[30];
     double Iphone;
@@ -157,9 +157,9 @@ void Add(SeqList* L)
     printf("三号评委成绩");
     scanf("%d", &L->elem[i].score[2]);
     printf("四号评委成绩");
-    scanf("%d", &L->elem[i].score[2]);
+    scanf("%d", &L->elem[i].score[3]);
     printf("五号评委成绩");
-    scanf("%d", &L->elem[i].score[2]);
+    scanf("%d", &L->elem[i].score[4]);
     L->elem[i].sum = L->elem[i].score[0] + L->elem[i].score[1] + L->elem[i].score[2]+ L->elem[i].score[3]+ L->elem[i].score[4];
     L->last++;
     printf("信息添加成功！");
@@ -206,11 +206,11 @@ void Insert(SeqList* L)
     }
     printf("请输入参赛人员赛号");
     scanf("%lf", &L->elem[s].num);
-    printf("请输入参赛人员赛号");
+    printf("请输入参赛人员姓名");
     scanf("%s", L->elem[s].name);
-    printf("请输入参赛人员赛号");
+    printf("请输入参赛人员手机号");
     scanf("%lf", &L->elem[s].iphone);
-    printf("请输入参赛人员赛号\n");
+    printf("请输入参赛人员成绩\n");
     printf("一号评委成绩");
     scanf("%d", &L->elem[s].score[0]);
     printf("二号评委成绩");
@@ -218,9 +218,9 @@ void Insert(SeqList* L)
     printf("三号评委成绩");
     scanf("%d", &L->elem[s].score[2]);
     printf("四号评委成绩");
-    scanf("%d", &L->elem[s].score[2]);
+    scanf("%d", &L->elem[s].score[3]);
     printf("五号评委成绩");
-    scanf("%d", &L->elem[s].score[2]);
+    scanf("%d", &L->elem[s].score[4]);
     L->elem[s].sum = L->elem[s].score[0] + L->elem[s].score[1] + L->elem[s].score[2] + L->elem[s].score[3] + L->elem[s].score[4];
     
     printf("信息添加成功！");
@@ -230,7 +230,7 @@ void Insert(SeqList* L)
 void Change(SeqList *L)
 {
     printf("进入修改参赛人员信息系统\n");
-    int i, s;
+    int  s;
     int have;
     s = Find(L) - 1;
     if(s != -1)
@@ -261,21 +261,21 @@ void Change(SeqList *L)
 void search(SeqList *L)
 {
     printf("进入查询参赛人员信息系统\n");
-    int i, s;
+    int  s;
     int have;
     s = Find(L) - 1;
     if(s != -1)
     {
         printf("找到赛号为%.0lf的参赛人员信息。",L->elem[s].num);
-         printf("选择要修改的信息：\n\t1.修改一号评委成绩。\n\t2.修改二号评委成绩。\n\t3.修改三号评委成绩。\n\t4.修改四号评委成绩。\n\t5.修改五号评委成绩。\n");
+         printf("选择要修改的信息：\n\t1.查找一号评委成绩。\n\t2.查找二号评委成绩。\n\t3.查找三号评委成绩。\n\t4.查找四号评委成绩。\n\t5.查找五号评委成绩。\n");
         scanf("%d", &have);
         switch(have)
         {
-            case 1:printf("一号评委成绩",L->elem[s].score[0]);break;
-            case 2:printf("二号评委成绩",L->elem[s].score[1]);break;
-            case 3:printf("三号评委成绩",L->elem[s].score[2]);break;
-            case 4:printf("四号评委成绩",L->elem[s].score[3]);break;
-            case 5:printf("五号评委成绩",L->elem[s].score[4]);break;
+            case 1:printf("一号评委成绩%d",L->elem[s].score[0]);break;
+            case 2:printf("二号评委成绩%d",L->elem[s].score[1]);break;
+            case 3:printf("三号评委成绩%d",L->elem[s].score[2]);break;
+            case 4:printf("四号评委成绩%d",L->elem[s].score[3]);break;
+            case 5:printf("五号评委成绩%d",L->elem[s].score[4]);break;
         }
         printf("查找成功\n");
     }
