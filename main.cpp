@@ -7,8 +7,9 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <string.h>
+#include <iostream>
+using namespace std;
 
 #define OK   1
 #define ERROR  0
@@ -24,6 +25,13 @@ struct student{
     double iphone;
 };
 
+struct referee
+{//裁判
+    string name;
+    string sex;
+    string tel;
+};
+struct referee r[10];
 typedef struct student ElemType;
 typedef  struct
 {
@@ -44,7 +52,34 @@ void read(SeqList* L);
 void save(SeqList* L);
 void Del(SeqList* L);
 void sort(SeqList* L);
+void put(referee *r);
+void outreferee(referee *r);
 
+void put(referee *r)
+{  int i;
+    cout<<"输入裁判信息:"<<endl;
+    for(i=0;i<5;i++)
+    {
+        cout<<"name:"<<endl;
+        cin>>r[i].name;
+        cout<<"sec:"<<endl;
+        cin>>r[i].sex;
+        cout<<"tel:"<<endl;
+        cin>>r[i].tel;
+    }
+}
+void outreferee(referee *r)
+{int i;
+    for(i=0;i<5;i++)
+    {
+        cout<<"name:"<<endl;
+        cout<<r[i].name;
+        cout<<"sec:"<<endl;
+        cout<<r[i].sex;
+        cout<<"tel:"<<endl;
+       cout<<r[i].tel;
+    }
+}
 void read(SeqList *L)
 {
     int i = 0, Score[20], Sum;
@@ -52,7 +87,7 @@ void read(SeqList *L)
     char Name[30];
     double Iphone;
     FILE* fp;
-    fp = fopen("student.txt", "r");
+    fp = fopen("/Users/a20161104603/Desktop/grade/student.csv", "r");
     if(fp == NULL)
         printf("该文件为空!\n");
     else
@@ -79,7 +114,7 @@ void save(SeqList* L)
 {
     int i;
     FILE* fp;
-    fp = fopen("student.txt", "w");
+    fp = fopen("/Users/a20161104603/Desktop/grade/student.csv", "w");
     if(fp == NULL)
         printf("当前文件夹不能被打开!\n");
     else
@@ -96,17 +131,19 @@ void save(SeqList* L)
 void JM()
 {
     printf("**********************************************\n");
-    printf("**--------------功能菜单表------------------**\n");
+    printf("**--------------功能菜单表--------------------**\n");
     printf("**********************************************\n");
-    printf("**------------1.添加参赛人员信息------------**\n");
-    printf("**------------2.修改参赛人员信息------------**\n");
-    printf("**------------3.删除参赛人员信息------------**\n");
-    printf("**------------4.显示全部参赛人员信息--------**\n");
-    printf("**------------5.插入参赛人员信息------------**\n");
-    printf("**------------6.保存参赛人员信息------------**\n");
-    printf("**------------7.查询参赛人员信息------------**\n");
-    printf("**------------8.按照总成绩排序--------------**\n");
-    printf("**------------0.退出评分系统------------**\n");
+    printf("**------------1.添加参赛人员信息---------------**\n");
+    printf("**------------2.修改参赛人员信息---------------**\n");
+    printf("**------------3.删除参赛人员信息---------------**\n");
+    printf("**------------4.显示全部参赛人员信息------------**\n");
+    printf("**------------5.插入参赛人员信息---------------**\n");
+    printf("**------------6.保存参赛人员信息---------------**\n");
+    printf("**------------7.查询参赛人员信息---------------**\n");
+    printf("**------------8.按照总成绩排序-----------------**\n");
+    printf("**------------9.添加裁判人员信息---------------**\n");
+    printf("**------------10。输出裁判信息-----------------**\n");
+    printf("**------------0.退出评分系统------------------**\n");
     printf("**********************************************\n");
 }
 
@@ -129,6 +166,8 @@ void menu(SeqList* L)
             case 6: save(L);break;
             case 7: search(L);break;
             case 8: sort(L);break;
+            case 9: put(r);break;
+            case 10: outreferee(r);break;
             case 0: exit(0);break;
         }
         
