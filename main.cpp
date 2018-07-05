@@ -235,7 +235,7 @@ void Insert(SeqList* L)
 {
     printf("进入插入参赛人员信息系统\n");
     int i, s;
-    printf("“™≤Â»ÎµΩµ⁄º∏Œª£∫");
+    printf("输入插入位置");
     scanf("%d", &s);
     s--;
     L->last++;
@@ -306,7 +306,7 @@ void search(SeqList *L)
     if(s != -1)
     {
         printf("找到赛号为%.0lf的参赛人员信息。",L->elem[s].num);
-         printf("选择要修改的信息：\n\t1.查找一号评委成绩。\n\t2.查找二号评委成绩。\n\t3.查找三号评委成绩。\n\t4.查找四号评委成绩。\n\t5.查找五号评委成绩。\n");
+         printf("选择要查找的信息：\n\t1.查找一号评委成绩。\n\t2.查找二号评委成绩。\n\t3.查找三号评委成绩。\n\t4.查找四号评委成绩。\n\t5.查找五号评委成绩。\n");
         scanf("%d", &have);
         switch(have)
         {
@@ -327,10 +327,10 @@ void Show(SeqList *L)
 {
     printf("显示全部参赛人员信息\n");
     int i;
-    printf("|    赛号   |    姓名     |    手机号  |一号评委成绩|二号评委成绩|三号评委成绩|四号评委成绩|五号评委成绩|  总成绩  |\n");
+    printf("     赛号       姓名        手机号  一号评委成绩 二号评委成绩 三号评委成绩 四号评委成绩 五号评委成绩   总成绩   \n");
     for(i=0; i<L->last; i++)
     {
-        printf("|%11.0lf|%13s|%11.0lf|%12d|%12d|%12d|%12d|%12d|%10d|\n",L->elem[i].num, L->elem[i].name,L->elem[i].iphone, L->elem[i].score[0], L->elem[i].score[1], L->elem[i].score[2], L->elem[i].score[3], L->elem[i].score[4],L->elem[i].sum);
+    printf("     %.0lf         %s       %.0lf      %d        %d       %d         %d        %d          %d \n",L->elem[i].num, L->elem[i].name,L->elem[i].iphone, L->elem[i].score[0], L->elem[i].score[1], L->elem[i].score[2], L->elem[i].score[3], L->elem[i].score[4],L->elem[i].sum);
     }
 }
 void sort(SeqList *L)
@@ -352,10 +352,10 @@ void sort(SeqList *L)
             
             
         }
-       printf("|    赛号   |    姓名     |    手机号  |一号评委成绩|二号评委成绩|三号评委成绩|四号评委成绩|五号评委成绩|  总成绩  |\n");
+        printf("     赛号       姓名        手机号    一号评委成绩 二号评委成绩 三号评委成绩 四号评委成绩 五号评委成绩   总成绩   \n");
         for(i=0; i<L->last; i++)
         {
-            printf("|%11.0lf|%13s|%11.0lf|%12d|%12d|%12d|%12d|%12d|%10d|\n",L->elem[i].num, L->elem[i].name,L->elem[i].iphone, L->elem[i].score[0], L->elem[i].score[1], L->elem[i].score[2], L->elem[i].score[3], L->elem[i].score[4],L->elem[i].sum);
+            printf("     %.0lf         %s       %.0lf        %d        %d       %d         %d        %d          %d \n",L->elem[i].num, L->elem[i].name,L->elem[i].iphone, L->elem[i].score[0], L->elem[i].score[1], L->elem[i].score[2], L->elem[i].score[3], L->elem[i].score[4],L->elem[i].sum);
         }
     }
     
