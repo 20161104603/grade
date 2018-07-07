@@ -23,6 +23,7 @@ struct student{
     int score[20];
     int sum;
     double iphone;
+    int rank;
 };
 
 struct referee
@@ -54,6 +55,8 @@ void Del(SeqList* L);
 void sort(SeqList* L);
 void put(referee *r);
 void outreferee(referee *r);
+void calculateScore(SeqList* L);
+
 
 void put(referee *r)
 {  int i;
@@ -142,7 +145,8 @@ void JM()
     printf("**------------7.查询参赛人员信息---------------**\n");
     printf("**------------8.按照总成绩排序-----------------**\n");
     printf("**------------9.添加裁判人员信息---------------**\n");
-    printf("**------------10。输出裁判信息-----------------**\n");
+    printf("**------------10.输出裁判信息-----------------**\n");
+    printf("**------------11.显示参赛人员平均成绩-----------**\n");
     printf("**------------0.退出评分系统------------------**\n");
     printf("**********************************************\n");
 }
@@ -168,6 +172,7 @@ void menu(SeqList* L)
             case 8: sort(L);break;
             case 9: put(r);break;
             case 10: outreferee(r);break;
+            case 11: calculateScore(L);break;
             case 0: exit(0);break;
         }
         
@@ -323,6 +328,16 @@ void search(SeqList *L)
 }
 
 
+void calculateScore(SeqList *L)
+{
+    printf("显示全部参赛人员平均成绩\n");
+    int i;
+    printf("     赛号       姓名        平均成绩成绩   \n");
+    for(i=0; i<L->last; i++)
+    {
+    printf("     %.0lf         %s       %d \n",L->elem[i].num, L->elem[i].name,L->elem[i].sum/5);
+    }
+}
 void Show(SeqList *L)
 {
     printf("显示全部参赛人员信息\n");
@@ -330,7 +345,7 @@ void Show(SeqList *L)
     printf("     赛号       姓名        手机号  一号评委成绩 二号评委成绩 三号评委成绩 四号评委成绩 五号评委成绩   总成绩   \n");
     for(i=0; i<L->last; i++)
     {
-    printf("     %.0lf         %s       %.0lf      %d        %d       %d         %d        %d          %d \n",L->elem[i].num, L->elem[i].name,L->elem[i].iphone, L->elem[i].score[0], L->elem[i].score[1], L->elem[i].score[2], L->elem[i].score[3], L->elem[i].score[4],L->elem[i].sum);
+        printf("     %.0lf         %s       %.0lf      %d        %d       %d         %d        %d          %d \n",L->elem[i].num, L->elem[i].name,L->elem[i].iphone, L->elem[i].score[0], L->elem[i].score[1], L->elem[i].score[2], L->elem[i].score[3], L->elem[i].score[4],L->elem[i].sum);
     }
 }
 void sort(SeqList *L)
