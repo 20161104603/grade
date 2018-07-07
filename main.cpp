@@ -23,11 +23,12 @@ struct student{
     int score[20];
     int sum;
     double iphone;
-    int rank;
+
 };
 
 struct referee
 {//裁判
+    string ID;
     string name;
     string sex;
     string tel;
@@ -48,6 +49,7 @@ void Insert(SeqList* L);
 void Show(SeqList *L);
 void JM();
 int Find(SeqList* L);
+int Find1(referee *r);
 void search(SeqList* L);
 void read(SeqList* L);
 void save(SeqList* L);
@@ -56,6 +58,8 @@ void sort(SeqList* L);
 void put(referee *r);
 void outreferee(referee *r);
 void calculateScore(SeqList* L);
+void sortcalculateScore(SeqList* L);
+void ChangeReferee(SeqList *r);
 
 
 void put(referee *r)
@@ -63,6 +67,9 @@ void put(referee *r)
     cout<<"输入裁判信息:"<<endl;
     for(i=0;i<5;i++)
     {
+        
+        cout<<"ID:"<<endl;
+        cin>>r[i].ID;
         cout<<"name:"<<endl;
         cin>>r[i].name;
         cout<<"sec:"<<endl;
@@ -75,6 +82,9 @@ void outreferee(referee *r)
 {int i;
     for(i=0;i<5;i++)
     {
+        
+        cout<<"ID:"<<endl;
+        cout<<r[i].ID;
         cout<<"name:"<<endl;
         cout<<r[i].name;
         cout<<"sec:"<<endl;
@@ -83,6 +93,8 @@ void outreferee(referee *r)
        cout<<r[i].tel;
     }
 }
+
+
 void read(SeqList *L)
 {
     int i = 0, Score[20], Sum;
@@ -147,6 +159,7 @@ void JM()
     printf("**------------9.添加裁判人员信息---------------**\n");
     printf("**------------10.输出裁判信息-----------------**\n");
     printf("**------------11.显示参赛人员平均成绩-----------**\n");
+    printf("**------------8.按照平均成绩排序---------------**\n");
     printf("**------------0.退出评分系统------------------**\n");
     printf("**********************************************\n");
 }
@@ -173,6 +186,7 @@ void menu(SeqList* L)
             case 9: put(r);break;
             case 10: outreferee(r);break;
             case 11: calculateScore(L);break;
+            case 12: sortcalculateScore(L);break;
             case 0: exit(0);break;
         }
         
@@ -236,6 +250,8 @@ int Find(SeqList* L)
         return -1;
 }
 
+
+
 void Insert(SeqList* L)
 {
     printf("进入插入参赛人员信息系统\n");
@@ -270,6 +286,7 @@ void Insert(SeqList* L)
     printf("信息添加成功！");
     
 }
+
 
 void Change(SeqList *L)
 {
@@ -376,6 +393,35 @@ void sort(SeqList *L)
     
     
 }
+void  sortcalculateScore(SeqList* L)
+{
+    int i,j,n;
+    ElemType temp;
+    n=L->last;
+    for(i=0;i<n-1;i++)
+    {
+        
+        for(j=0;j<n-i;j++)
+        {
+            if(L->elem[j].sum/5<L->elem[j+1].sum/5)
+            {
+                temp=L->elem[j];
+                L->elem[j]=L->elem[j+1];
+                L->elem[j+1]=temp;
+            }
+            
+            
+        }
+        printf("     赛号       姓名        手机号    一号评委成绩 二号评委成绩 三号评委成绩 四号评委成绩 五号评委成绩   平均成绩   \n");
+        for(i=0; i<L->last; i++)
+        {
+            printf("     %.0lf         %s       %.0lf        %d        %d       %d         %d        %d          %d \n",L->elem[i].num, L->elem[i].name,L->elem[i].iphone, L->elem[i].score[0], L->elem[i].score[1], L->elem[i].score[2], L->elem[i].score[3], L->elem[i].score[4],L->elem[i].sum/5);
+        }
+    }
+    
+    
+}
+
 int main()
 {
     SeqList L;
